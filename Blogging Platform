@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blogging Platform</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Blogging Platform</h1>
+        <input type="text" placeholder="Search posts...">
+    </header>
+    <main>
+        <article class="post">
+            <h2>Post Title</h2>
+            <p>Post content...</p>
+            <div class="post-info">
+                <p>Author: John Doe</p>
+                <p>Date: January 1, 2023</p>
+            </div>
+            <button class="read-more">Read More</button>
+        </article>
+        <article class="post">
+            <h2>Post Title</h2>
+            <p>Post content...</p>
+            <div class="post-info">
+                <p>Author: Jane Doe</p>
+                <p>Date: December 31, 2022</p>
+            </div>
+            <button class="read-more">Read More</button>
+        </article>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+header input[type="text"] {
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    outline: none;
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+}
+
+.post {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    padding: 20px;
+    width: calc(33.333% - 40px);
+}
+
+.post h2 {
+    margin: 0 0 10px;
+}
+
+.post p {
+    margin: 0;
+}
+
+.post-info {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+}
+
+.read-more {
+    background-color: #333;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    padding: 10px 20px;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.read-more:hover {
+    background-color: #444;
+}
+const readMoreButtons = document.querySelectorAll('.read-more');
+
+readMoreButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        const post = button.closest('.post');
+        const postContent = post.querySelector('p');
+
+        if (postContent.classList.contains('expanded')) {
+            postContent.classList.remove('expanded');
+            button.textContent = 'Read More';
+        } else {
+            postContent.classList.add('expanded');
+            button.textContent = 'Read Less';
+        }
+    });
+});
